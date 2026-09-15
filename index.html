@@ -85,7 +85,61 @@
       --color-border-light: #E7E8EE;
       --color-bg-light: #F8F8FC;
     }
+    /* 12-Column Grid Engine */
+    .gws-grid {
+      display: grid;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+      grid-template-columns: repeat(6, 1fr);
+      column-gap: 16px;
+      padding-left: 16px;
+      padding-right: 16px;
+      max-width: 600px;
+    }
 
+    @media (min-width: 600px) {
+      .gws-grid {
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 16px;
+        padding-left: 26px;
+        padding-right: 26px;
+        max-width: 1024px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .gws-grid {
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 24px;
+        padding-left: 24px;
+        padding-right: 24px;
+        max-width: 1440px;
+      }
+    }
+
+    /* Grid Column Variable Resolver */
+    .gws-column {
+      --gws-column-xs-mobile-start: 1;
+      --gws-column-xs-mobile-end: 6;
+      grid-column-start: var(--gws-column-mobile-start, var(--gws-column-xs-mobile-start));
+      grid-column-end: span calc(var(--gws-column-mobile-end, var(--gws-column-xs-mobile-end)) - var(--gws-column-mobile-start, var(--gws-column-xs-mobile-start)) + 1);
+    }
+
+    @media (min-width: 600px) {
+      .gws-column {
+        grid-column-start: var(--gws-column-tablet-start, var(--gws-column-mobile-start));
+        grid-column-end: span calc(var(--gws-column-tablet-end, var(--gws-column-mobile-end)) - var(--gws-column-tablet-start, var(--gws-column-mobile-start)) + 1);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .gws-column {
+        grid-column-start: var(--gws-column-laptop-start, var(--gws-column-tablet-start));
+        grid-column-end: span calc(var(--gws-column-laptop-end, var(--gws-column-tablet-end)) - var(--gws-column-laptop-start, var(--gws-column-tablet-start)) + 1);
+      }
+    }
     /* Prevent layout shift during mobile menu transitions */
     .mobile-menu-enter {
       max-height: 0px;
