@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>TeamFlow - Your team's best decisions shouldn't disappear.</title>
+  <meta name="description"
+    content="TeamFlow preserves the context behind decisions so your team stays aligned, moves faster, and builds with confidence. Built for modern product teams.">
+  <meta name="keywords"
+    content="SaaS, decision tracking, context preservation, product teams, alignment, knowledge management">
+  <meta name="author" content="TeamFlow Inc.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.teamflow.com/">
+  <meta property="og:title" content="TeamFlow - Your team's best decisions shouldn't disappear.">
+  <meta property="og:description"
+    content="TeamFlow preserves the context behind decisions so your team stays aligned, moves faster, and builds with confidence.">
+  <meta property="og:image" content="https://www.teamflow.com/assets/og-image.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://www.teamflow.com/">
+  <meta property="twitter:title" content="TeamFlow - Your team's best decisions shouldn't disappear.">
+  <meta property="twitter:description"
+    content="TeamFlow preserves the context behind decisions so your team stays aligned, moves faster, and builds with confidence.">
+  <meta property="twitter:image" content="https://www.teamflow.com/assets/og-image.png">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              DEFAULT: '#6D4AFF',
+              15: '#EFEBFF',
+              50: '#F5F3FF',
+              100: '#EDE9FE',
+              200: '#DDD6FE',
+              300: '#C4B5FD',
+              400: '#A78BFA',
+              500: '#8B5CF6',
+              600: '#6366F1', // Primary brand indigo/violet
+              700: '#4F46E5',
+              800: '#4338CA',
+              900: '#312E81',
+              hover: '#524BE3',
+            },
+            'brand-purple-light': '#6952E3',
+            'brand-purple-dark': '#5539DA',
+            'brand-blue-light': '#4A88E9',
+            'brand-blue-dark': '#3B72D4',
+            'brand-green-light': '#38D39E',
+            'brand-green-dark': '#29B484',
+            dark: {
+              DEFAULT: '#0E1023',
+              muted: '#5B6170',
+              navy: '#05031A',
+            },
+            borderLight: '#E7E8EE',
+            bgLight: '#F8F8FC',
+          },
+          boxShadow: {
+            'glow': '0 20px 50px -10px rgba(99, 102, 241, 0.15)',
+            'card': '0 10px 30px -5px rgba(15, 23, 42, 0.05)',
+            'dash': '0 25px 60px -15px rgba(15, 23, 42, 0.12)',
+            'soft-button': '0 4px 14px 0 rgba(109, 74, 255, 0.22)',
+            'nav-shadow': '0 10px 30px -10px rgba(15, 11, 46, 0.04)',
+            'product-shadow': '0 40px 80px -15px rgba(15, 11, 46, 0.15), 0 0 0 1px rgba(15, 11, 46, 0.03)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --color-brand: #6D4AFF;
+      --color-brand-hover: #5535E6;
+      --color-dark: #0E1023;
+      --color-dark-muted: #5B6170;
+      --color-border-light: #E7E8EE;
+      --color-bg-light: #F8F8FC;
+      --ink: #14121f;
+      --ink-soft: #5b566c;
+      --violet-700: #4b3fd6;
+      --violet-600: #5b4fe8;
+      --violet-500: #7266f0;
+      --lav-50: #f6f4fe;
+      --lav-100: #eeeafd;
+      --lav-200: #e2ddfb;
+      --card-line: #ece9f9;
+    }
+
+
+    /* Prevent layout shift during mobile menu transitions */
+    .mobile-menu-enter {
+      max-height: 0px;
+      opacity: 0;
+      transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s linear;
+    }
+
+    .mobile-menu-active {
+      max-height: 480px;
+      opacity: 1;
+    }
+
+    .timeline-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      letter-spacing: -0.2px;
+      box-shadow:
+        0 12px 30px -6px rgba(79, 70, 229, 0.12),
+        0 4px 12px -4px rgba(0, 0, 0, 0.06) !important;
+      border: none !important;
+
+    }
+
+    /* Mesh / Cobweb Background Styling */
+    .bg-mesh-pattern {
+      background-image: radial-gradient(circle at 50% 30%, rgba(139, 92, 246, 0.08) 0%, rgba(248, 247, 255, 0) 70%);
+    }
+
+    /* Custom scrollbar for tab navigation on small devices */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Gradient Text Utility */
+    .text-gradient {
+      background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Base track for all items (light gray line) */
+    .accordion-item {
+      position: relative;
+    }
+
+    .accordion-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background-color: #e2e8f0;
+      /* slate-200 */
+
+    }
+
+    /* The blue progress bar filling over the active item */
+    .accordion-progress-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 3px;
+      height: 0%;
+      background-color: #2563eb;
+      /* brand-600 / blue-600 */
+      border-radius: 9999px;
+      /* Transition applied dynamically via JS to handle reset vs animate states */
+    }
+
+    /* Smooth accordion expand/collapse using CSS grid */
+    .accordion-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s ease-out;
+    }
+
+    .accordion-item.active .accordion-content {
+      grid-template-rows: 1fr;
+    }
+
+    .accordion-content-inner {
+      overflow: hidden;
+    }
+
+    /* Fixed aspect-ratio container to prevent layout jumping */
+    .dashboard-window {
+      position: relative;
+      width: 100%;
+      /* Standard 16:10 or 16:9 aspect ratio box to hold images evenly */
+      aspect-ratio: auto 1368 / 1000;
+      /* rounded-2xl */
+      overflow: hidden;
+    }
+
+    /* All images stacked directly on top of each other */
+    .dashboard-window img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Ensures images fit the container neatly */
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+      pointer-events: none;
+    }
+
+    /* Active image fades in smoothly */
+    .dashboard-window img.active {
+      opacity: 1;
+    }
+
+    /* 12-Column Grid Engine */
+    .gws-grid {
+      display: grid;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+      grid-template-columns: repeat(6, 1fr);
+      column-gap: 16px;
+      padding-left: 16px;
+      padding-right: 16px;
+      max-width: 600px;
+    }
+
+    @media (min-width: 600px) {
+      .gws-grid {
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 16px;
+        padding-left: 26px;
+        padding-right: 26px;
+        max-width: 1024px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .gws-grid {
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 24px;
+        padding-left: 24px;
+        padding-right: 24px;
+        max-width: 1440px;
+      }
+    }
+
+    /* Grid Column Variable Resolver */
+    .gws-column {
+      --gws-column-xs-mobile-start: 1;
+      --gws-column-xs-mobile-end: 6;
+      grid-column-start: var(--gws-column-mobile-start, var(--gws-column-xs-mobile-start));
+      grid-column-end: span calc(var(--gws-column-mobile-end, var(--gws-column-xs-mobile-end)) - var(--gws-column-mobile-start, var(--gws-column-xs-mobile-start)) + 1);
+    }
+
+    @media (min-width: 600px) {
+      .gws-column {
+        grid-column-start: var(--gws-column-tablet-start, var(--gws-column-mobile-start));
+        grid-column-end: span calc(var(--gws-column-tablet-end, var(--gws-column-mobile-end)) - var(--gws-column-tablet-start, var(--gws-column-mobile-start)) + 1);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .gws-column {
+        grid-column-start: var(--gws-column-laptop-start, var(--gws-column-tablet-start));
+        grid-column-end: span calc(var(--gws-column-laptop-end, var(--gws-column-tablet-end)) - var(--gws-column-laptop-start, var(--gws-column-tablet-start)) + 1);
+      }
+    }
+
+    .stage {
+      background:
+        radial-gradient(60% 55% at 14% 8%, #efeaff 0%, transparent 60%),
+        radial-gradient(50% 45% at 88% 92%, #e7e2fb 0%, transparent 55%),
+        linear-gradient(180deg, #faf9ff 0%, #f2effc 100%);
+    }
+
+    .frame {
+      background: linear-gradient(160deg, #ffffff 0%, var(--lav-50) 45%, var(--lav-100) 100%);
+      border: 1px solid #eae6fb;
+      box-shadow: 0 1px 0 #fff inset, 0 30px 60px -30px rgba(76, 63, 175, 0.25);
+    }
+
+    .badge {
+      background: radial-gradient(circle at 30% 30%, #8b7ef8, var(--violet-700));
+      box-shadow: 0 6px 16px -4px rgba(91, 79, 232, 0.55);
+    }
+
+    .result-card {
+      background: #ffffff;
+      box-shadow: 0 1px 0 rgba(20, 18, 31, 0.02), 0 18px 40px -28px rgba(43, 34, 110, 0.35);
+    }
+
+    .query-bar {
+      background: #ffffff;
+      border: 1px solid #e7e3f8;
+      box-shadow: 0 1px 2px rgba(20, 18, 31, 0.04), 0 12px 28px -18px rgba(76, 63, 175, 0.35);
+    }
+
+    .icon-doc {
+      background: var(--lav-100);
+    }
+
+    .cta {
+      background: linear-gradient(180deg, var(--violet-500), var(--violet-700));
+      transition: filter .18s ease;
+    }
+
+    .cta:hover {
+      filter: brightness(1.05);
+    }
+
+    .cta:active {
+      filter: brightness(0.98);
+    }
+
+    @keyframes riseIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      animation: riseIn .5s cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    .r1 {
+      animation-delay: .05s;
+    }
+
+    .r2 {
+      animation-delay: .15s;
+    }
+
+    .r3 {
+      animation-delay: .23s;
+    }
+
+    .r4 {
+      animation-delay: .31s;
+    }
+
+    .r5 {
+      animation-delay: .39s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body
+  class="bg-white text-slate-900 font-sans antialiased selection:bg-brand-100 selection:text-brand-700 min-h-screen flex flex-col">
+
+  <!-- NAVIGATION BAR -->
+  <header id="main-header" class="sticky top-0 z-50 w-full bg-transparent transition-all duration-300">
+    <div class="mx-auto max-w-7xl px-6 sm:px-8">
+      <div class="flex h-[60px] items-center justify-between">
+
+        <!-- Logo Zone -->
+        <div class="flex flex-shrink-0 items-center">
+          <a href="index.html" class="flex items-center gap-1 group" aria-label="TeamFlow Home">
+            <img class="w-8 h-auto object-cover" src="assets/teamflow-logo.png">
+            <span class="text-[21px] font-extrabold tracking-tight text-slate-900">TeamFlow</span>
+          </a>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-1 lg:space-x-2" aria-label="Global navigation">
+          <!-- Active Link (Product) with Indicator Dot -->
+          <a href="#"
+            class="relative rounded-md px-3.5 py-2 text-[15px] font-semibold text-dark transition-colors duration-200">
+            <span>Product</span>
+            <!-- Active Indicator Dot (Perfectly Centered horizontally at the bottom) -->
+            <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-brand-600"></span>
+          </a>
+
+          <!-- Solutions Dropdown -->
+          <div class="relative group">
+            <button type="button"
+              class="inline-flex items-center gap-1 rounded-md px-3.5 py-2 text-[15px] font-medium text-dark-muted hover:text-dark transition-colors duration-200 group-hover:text-dark focus:outline-none"
+              aria-expanded="false">
+              <span>Solutions</span>
+              <svg class="h-4 w-4 text-dark-muted/70 transition-transform duration-200 group-hover:rotate-180"
+                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <!-- Dropdown Menu -->
+            <div
+              class="absolute left-1/2 z-10 mt-2 w-56 -translate-x-1/2 scale-95 opacity-0 pointer-events-none group-hover:scale-100 group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 origin-top rounded-xl bg-white p-2 shadow-nav-shadow ring-1 ring-black/5">
+              <a href="#"
+                class="block rounded-lg px-4 py-2.5 text-sm text-dark hover:bg-bgLight transition-colors">Product
+                Teams</a>
+              <a href="#"
+                class="block rounded-lg px-4 py-2.5 text-sm text-dark hover:bg-bgLight transition-colors">Engineering
+                Teams</a>
+              <a href="#"
+                class="block rounded-lg px-4 py-2.5 text-sm text-dark hover:bg-bgLight transition-colors">Design
+                Teams</a>
+              <a href="#"
+                class="block rounded-lg px-4 py-2.5 text-sm text-dark hover:bg-bgLight transition-colors">Startups</a>
+            </div>
+          </div>
+
+          <a href="#"
+            class="rounded-md px-3.5 py-2 text-[15px] font-medium text-dark-muted hover:text-dark transition-colors duration-200">Pricing</a>
+
+          <!-- Resources Dropdown -->
+          <div class="relative group">
+            <button type="button"
+              class="inline-flex items-center gap-1 rounded-md px-3.5 py-2 text-[15px] font-medium text-dark-muted hover:text-dark transition-colors duration-200 group-hover:text-dark focus:outline-none"
+              aria-expanded="false">
+              <span>Resources</span>
+              <svg class="h-4 w-4 text-dark-muted/70 transition-transform duration-200 group-hover:rotate-180"
+                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <div
+              class="absolute left-1/2 z-10 mt-2 w-56 -translate-x-1/2 scale-95 opacity-0 pointer-events-none group-hover:scale-100 group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 origin-top rounded-xl bg-white p-2 shadow-nav-shadow ring-1 ring-black/5">
+              <a href="#"
+                class="block rounded-lg px-4 py-2.5 text-sm text-dark hover:bg-bgLight transition-colors">Blog</a>
+              <a href="#"
+                class="block rounded-lg px-4 py-2.5 text-sm text-dark hover:bg-bgLight transition-colors">Guides</a>
+              <a href="#"
+                class="block rounded-lg px-4 py-2.5 text-sm text-dark hover:bg-bgLight transition-colors">Templates</a>
+              <a href="#" class="block rounded-lg px-4 py-2.5 text-sm text-dark hover:bg-bgLight transition-colors">Help
+                Center</a>
+            </div>
+          </div>
+
+          <!-- Company Dropdown -->
+          <div class="relative group">
+            <button type="button"
+              class="inline-flex items-center gap-1 rounded-md px-3.5 py-2 text-[15px] font-medium text-dark-muted hover:text-dark transition-colors duration-200 group-hover:text-dark focus:outline-none"
+              aria-expanded="false">
+              <span>Company</span>
+              <svg class="h-4 w-4 text-dark-muted/70 transition-transform duration-200 group-hover:rotate-180"
+                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <div
+              class="absolute left-1/2 z-10 mt-2 w-56 -translate-x-1/2 scale-95 opacity-0 pointer-events-none group-hover:scale-100 group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 origin-top rounded-xl bg-white p-2 shadow-nav-shadow ring-1 ring-black/5">
+              <a href="#"
+                class="block rounded-lg px-4 py-2.5 text-sm text-dark hover:bg-bgLight transition-colors">About Us</a>
+              <a href="#"
+                class="block rounded-lg px-4 py-2.5 text-sm text-dark hover:bg-bgLight transition-colors">Careers</a>
+              <a href="#"
+                class="block rounded-lg px-4 py-2.5 text-sm text-dark hover:bg-bgLight transition-colors">Privacy
+                Policy</a>
+            </div>
+          </div>
+        </nav>
+
+
+        <!-- Action CTA Zone (Right) -->
+        <div class="hidden lg:flex items-center gap-5">
+          <a href="#"
+            class="text-[15px] font-semibold text-slate-900 hover:text-brand transition-colors duration-200">Log
+            in</a>
+          <a href="#"
+            class="inline-flex h-11 items-center justify-center rounded-lg bg-brand px-5 text-[15px] font-bold text-white shadow-soft-button hover:bg-brand-hover hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+            Start free
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Toggle Menu Button -->
+        <div class="flex gap-2 items-center lg:hidden">
+          <a href="#"
+            class="inline-flex h-8 items-center justify-center rounded-lg bg-brand px-3 text-[15px] font-[600] text-white hover:bg-brand-hover hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+            Sign in
+          </a>
+          <button id="mobile-menu-toggle" type="button"
+            class="inline-flex items-center justify-center rounded-lg p-2 text-dark-muted hover:bg-bgLight hover:text-dark focus:outline-none"
+            aria-controls="mobile-navigation" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <div class="relative h-6 w-4">
+              <span id="hamburger-top"
+                class="absolute block h-0.5 w-4 transform bg-current transition-all duration-300 ease-in-out"
+                style="top: 3px; transform: none;"></span>
+              <span id="hamburger-mid"
+                class="absolute block h-0.5 w-4 transform bg-current transition-all duration-300 ease-in-out"
+                style="top: 11px; opacity: 1;"></span>
+              <span id="hamburger-bot"
+                class="absolute block h-0.5 w-4 transform bg-current transition-all duration-300 ease-in-out"
+                style="top: 19px; transform: none;"></span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <nav id="mobile-navigation" class="mobile-menu-enter lg:hidden overflow-hidden bg-white"
+      aria-label="Mobile navigation">
+      <div class="space-y-1.5 px-6 pb-6 pt-4 border-t border-borderLight/40">
+        <a href="product_page.html"
+          class="block rounded-lg px-4 py-2.5 text-base font-semibold text-dark-muted hover:bg-bgLight hover:text-dark transition-all">Product</a>
+        <a href="#"
+          class="block rounded-lg px-4 py-2.5 text-base font-semibold text-dark-muted hover:bg-bgLight hover:text-dark transition-all">Solutions</a>
+        <a href="#"
+          class="block rounded-lg px-4 py-2.5 text-base font-semibold text-dark-muted hover:bg-bgLight hover:text-dark transition-all">Pricing</a>
+        <a href="#"
+          class="block rounded-lg px-4 py-2.5 text-base font-semibold text-dark-muted hover:bg-bgLight hover:text-dark transition-all">Resources</a>
+        <a href="#"
+          class="block rounded-lg px-4 py-2.5 text-base font-semibold text-dark-muted hover:bg-bgLight hover:text-dark transition-all">Company</a>
+
+        <div class="my-4 border-t border-borderLight/80"></div>
+
+        <div class="grid grid-cols-1 gap-3">
+          <a href="#"
+            class="flex h-11 items-center justify-center rounded-lg border border-borderLight text-base font-semibold text-slate-900 hover:bg-bgLight transition-colors duration-200">
+            Log in
+          </a>
+          <a href="#"
+            class="flex h-11 items-center justify-center rounded-lg bg-brand text-base font-semibold text-white shadow-soft-button hover:bg-brand-hover transition-all duration-200">
+            Start free
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow">
+
+    <!-- HERO SECTION WITH SUBTLE COBWEB/MESH BACKGROUND -->
+    <section class="relative pt-10 pb-16 lg:pb-24 overflow-hidden">
+      <div
+        class="absolute top-[30%] bottom-0 bg-white left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[200px] lg:w-[1000px] lg:h-[500px] z-10 blur-3xl rounded-full">
+      </div>
+
+      <!-- Subtle SVG Cobweb Mesh Grid Overlay -->
+      <div
+        class="absolute left-[-50%] bottom-[0%] top-[-40%] md:top-[-40%] inset-0 z-0 pointer-events-none hidden lg:flex items-center justify-center opacity-20 sm:opacity-20">
+
+        <img class="w-full h-auto object-cover" src="icon-1.svg">
+      </div>
+      <div class="max-w-xs sm:max-w-5xl mx-auto sm:px-6 lg:px-8 text-center relative z-30">
+
+        <!-- Product Badge -->
+        <div
+          class="inline-flex items-center gap-2 pl-3 pr-6 py-2 rounded-full bg-white border border-slate-100 shadow-xs mb-7">
+
+          <!-- Purple background circle with centered diamond SVG -->
+          <span class="flex items-center justify-center w-5 h-5 rounded-full bg-indigo-50 shrink-0">
+            <svg class="w-2.5 h-2.5 text-indigo-600 fill-current" viewBox="0 0 24 24">
+              <path d="M12 2L2 12l10 10 10-10L12 2z"></path>
+            </svg>
+          </span>
+
+          <span class="text-[12px] font-bold tracking-wider uppercase text-slate-700 font-heading">PRODUCT</span>
+
+        </div>
+
+
+
+        <!-- Main Headline -->
+        <h1
+          class="hidden sm:block px-4 text-5xl/[1.11] lg:text-[66px] font-bold text-slate-900 tracking-[-0.02em] leading-[1.11] mb-6">
+          Decision intelligence<br>
+          <span class="tracking-[-0.06em] text-gradient">for modern product teams.</span>
+        </h1>
+        <h1 class="sm:hidden block text-[36px]/[1.222] px-4 font-bold text-slate-900 tracking-[-0.02em] mb-6">
+          Decision intelligence for<br>
+          <span class="text-gradient">modern teams.</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p
+          class="max-w-[36rem] mx-auto text-slate-600 text-[16px] sm:text-[19px] leading-relaxed font-normal tracking-[-0.2px] mb-6">
+          Capture decisions, connect evidence, and preserve organizational memory.
+        </p>
+
+        <!-- Action CTAs -->
+        <!-- Grid Container with 2 equal columns -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 px-4 items-center gap-6 mb-8 w-full max-w-4xl mx-auto">
+
+          <!-- Left Box (Get Started / Primary CTA): Anchored to the center, expands leftward -->
+          <a href="#"
+            class="justify-self-stretch sm:justify-self-end w-full sm:w-auto inline-flex items-center justify-center px-8 py-[17px] rounded-xl bg-brand-700 hover:bg-brand-700 text-white font-semibold text-sm shadow-lg shadow-brand-600/25 transition-all transform active:scale-95">
+            Get started
+          </a>
+
+          <!-- Right Box (Demo Play Button): Anchored to the center, expands rightward -->
+          <button id="open-demo-btn"
+            class="justify-self-stretch sm:justify-self-start w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-[28px] py-[17px] rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-[13px] border border-slate-200/90 shadow-lg shadow-slate-300/25 transition-all hover:border-slate-300 group">
+            <span
+              class="w-3 h-3 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+              <svg class="w-3 h-3 text-slate-800 fill-current" viewBox="8 5 11 14">
+                <path d="M8 5v14l11-7z"></path>
+              </svg>
+            </span>
+            Watch demo
+          </button>
+
+        </div>
+        <!-- Social Proof / Customer Rating Stack -->
+        <div
+          class="hidden lg:flex flex-col sm:flex-row items-center justify-center gap-3 text-base sm:text-sm font-medium text-slate-600">
+          <!-- Avatar Stack -->
+          <div class="flex -space-x-1 overflow-hidden">
+            <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover"
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=100&amp;h=100&amp;q=80"
+              alt="User Avatar">
+            <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover"
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;w=100&amp;h=100&amp;q=80"
+              alt="User Avatar">
+            <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover"
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=100&amp;h=100&amp;q=80"
+              alt="User Avatar">
+            <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover"
+              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&amp;fit=crop&amp;w=100&amp;h=100&amp;q=80"
+              alt="User Avatar">
+          </div>
+
+          <!-- Star Rating & Label -->
+          <div class="flex items-center flex-col sm:flex-row gap-1.5">
+            <div class="flex text-amber-400 -space-x-0.5">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                </path>
+              </svg>
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                </path>
+              </svg>
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                </path>
+              </svg>
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                </path>
+              </svg>
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                </path>
+              </svg>
+            </div>
+            <span class="text-slate-500">Loved by product teams worldwide</span>
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <section class="lg:pt-12 pt-0 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+
+          <!-- SHARED DASHBOARD CONTAINER (Desktop & Mobile optimized responsive images) -->
+          <div class="absolute -inset-16 lg:-inset-64 rounded-3xl bg-gradient-to-tr from-brand/15 blur-3xl z-1">
+          </div>
+          <section class="relative z-10 sm:px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+
+            <!-- Feature Navigation Tabs Container -->
+
+
+            <!-- Shared Dashboard Container -->
+            <!-- Requirement: Place both desktop & mobile placeholders inside same shared container with identical spacing, rounded corners, overflow handlings -->
+            <div
+              class="relative w-full rounded-2xl sm:rounded-3xl border-2 border-white bg-white shadow-product-shadow overflow-hidden group">
+
+              <!-- Desktop Dashboard Placeholder Image (Displayed conditionally: hidden lg:block) -->
+              <!-- Note: User can easily replace the src attribute with their desktop dashboard image URL -->
+              <img id="desktop-dashboard-img" src="assets/teamflow-desktop.png" alt="TeamFlow Product Dashboard - Desktop View"
+                class="hidden md:block w-full h-auto object-cover object-top select-none pointer-events-none transition-transform duration-500 group-hover:scale-[1.005]">
+
+              <!-- Mobile Dashboard Placeholder Image (Displayed conditionally: block lg:hidden) -->
+              <!-- Note: User can easily replace the src attribute with their mobile dashboard image URL -->
+              <img id="mobile-dashboard-img" src="assets/teamflow-mobile.png" alt="TeamFlow Product Dashboard - Mobile View"
+                class="block md:hidden w-full h-auto object-cover object-top select-none pointer-events-none">
+
+              <!-- Bottom-only Gradient Overlay -->
+              <!-- Requirement: Begins fully transparent several pixels above the bottom, then gradually transitions to the page background color at bottom edge to visually blend the dashboard into the following section and encourage scrolling -->
+              <!-- Effect is stronger on mobile (h-36 sm:h-28) and subtle on desktop (lg:h-24) -->
+              <!--<div
+                class="sm:hidden absolute bottom-0 inset-x-0 h-36 sm:h-28 lg:h-24 bg-gradient-to-t from-[#fafbfc] via-[#fafbfc]/80 via-40% to-transparent pointer-events-none z-20">
+              </div>-->
+
+            </div>
+
+          </section>
+
+        </div>
+      </section>
+    </section>
+    <!-- TRUSTED BY INNOVATIVE TEAMS LOGO STRIP -->
+    <section id="logos" class="relative w-full py-10 lg:py-14 bg-white">
+      <div class="gws-grid">
+
+        <!-- Section Header (Cols 1–12) -->
+        <div
+          style="--gws-column-tablet-start: 1; --gws-column-tablet-end: 12; --gws-column-laptop-start: 1; --gws-column-laptop-end: 12;"
+          class="gws-column text-center mb-6 sm:mb-8">
+          <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest">
+            Trusted by innovative teams
+          </p>
+        </div>
+
+        <!-- Static Logo Row (Cols 1–12) -->
+        <div
+          style="--gws-column-tablet-start: 1; --gws-column-tablet-end: 12; --gws-column-laptop-start: 1; --gws-column-laptop-end: 12;"
+          class="gws-column flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16 opacity-75 grayscale hover:grayscale-0 transition-all duration-300">
+          <img alt="Google" loading="lazy" width="90" height="28" class="h-5 sm:h-6 md:h-7 w-auto object-contain"
+            src="https://cdn.magicui.design/companies/Google.svg">
+          <img alt="Microsoft" loading="lazy" width="90" height="28" class="h-5 sm:h-6 md:h-7 w-auto object-contain"
+            src="https://cdn.magicui.design/companies/Microsoft.svg">
+          <img alt="Amazon" loading="lazy" width="90" height="28" class="h-5 sm:h-6 md:h-7 w-auto object-contain"
+            src="https://cdn.magicui.design/companies/Amazon.svg">
+          <img alt="Netflix" loading="lazy" width="90" height="28" class="h-5 sm:h-6 md:h-7 w-auto object-contain"
+            src="https://cdn.magicui.design/companies/Netflix.svg">
+          <img alt="YouTube" loading="lazy" width="90" height="28" class="h-5 sm:h-6 md:h-7 w-auto object-contain"
+            src="https://cdn.magicui.design/companies/YouTube.svg">
+          <img alt="Spotify" loading="lazy" width="90" height="28" class="h-5 sm:h-6 md:h-7 w-auto object-contain"
+            src="https://cdn.magicui.design/companies/Spotify.svg">
+        </div>
+
+      </div>
+    </section>
+    <!-- DASHBOARD PREVIEW SECTION WITH FEATURE TABS -->
+    <script type="text/notjs">
+    <section class="py-12 lg:py-20 relative z-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      
+        <!-- FEATURE TABS BAR -->
+        <div class="mb-8 overflow-x-auto no-scrollbar py-2">
+          <div
+            class="inline-flex min-w-full lg:min-w-0 lg:w-full bg-white p-2 rounded-2xl border border-slate-200/80 shadow-card justify-between gap-1 sm:gap-2">
+
+            <!-- Tab 1: Overview (Active) -->
+            <button
+              class="feature-tab flex-1 min-w-[140px] lg:min-w-0 p-3 rounded-xl text-left transition-all duration-200 border group border-transparent hover:bg-slate-50">
+              <div class="flex items-center gap-2 mb-0.5">
+                <svg class="w-4 h-4 text-brand-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                  </path>
+                </svg>
+                <span class="text-xs font-bold text-slate-700 group-hover:text-slate-900">Overview</span>
+              </div>
+              <p class="text-[11px] text-slate-500 truncate pl-6">See the big picture</p>
+            </button>
+
+            <!-- Tab 2: Decisions -->
+            <button
+              class="feature-tab flex-1 min-w-[140px] lg:min-w-0 p-3 rounded-xl text-left transition-all duration-200 border group border-transparent hover:bg-slate-50">
+              <div class="flex items-center gap-2 mb-0.5">
+                <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-xs font-bold text-slate-700 group-hover:text-slate-900">Decisions</span>
+              </div>
+              <p class="text-[11px] text-slate-400 truncate pl-6">Capture every decision</p>
+            </button>
+
+            <!-- Tab 3: Evidence -->
+            <button
+              class="feature-tab flex-1 min-w-[140px] lg:min-w-0 p-3 rounded-xl text-left transition-all duration-200 border group border-transparent hover:bg-slate-50">
+              <div class="flex items-center gap-2 mb-0.5">
+                <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
+                  </path>
+                </svg>
+                <span class="text-xs font-bold text-slate-700 group-hover:text-slate-900">Evidence</span>
+              </div>
+              <p class="text-[11px] text-slate-400 truncate pl-6">Connect what matters</p>
+            </button>
+
+            <!-- Tab 4: Timeline -->
+            <button
+              class="feature-tab flex-1 min-w-[140px] lg:min-w-0 p-3 rounded-xl text-left transition-all duration-200 border group active bg-brand-50/80 border-brand-200/60 shadow-2xs">
+              <div class="flex items-center gap-2 mb-0.5">
+                <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z">
+                  </path>
+                </svg>
+                <span class="text-xs font-bold text-slate-900 group-hover:text-brand-600">Timeline</span>
+              </div>
+              <p class="text-[11px] text-slate-400 truncate pl-6">Follow the context</p>
+            </button>
+
+            <!-- Tab 5: AI Summaries -->
+            <button
+              class="feature-tab flex-1 min-w-[140px] lg:min-w-0 p-3 rounded-xl text-left transition-all duration-200 hover:bg-slate-50 border border-transparent group">
+              <div class="flex items-center gap-2 mb-0.5">
+                <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <span class="text-xs font-bold text-slate-700 group-hover:text-slate-900">AI Summaries</span>
+              </div>
+              <p class="text-[11px] text-slate-400 truncate pl-6">Surface key insights</p>
+            </button>
+
+            <!-- Tab 6: Search -->
+            <button
+              class="feature-tab flex-1 min-w-[140px] lg:min-w-0 p-3 rounded-xl text-left transition-all duration-200 hover:bg-slate-50 border border-transparent group">
+              <div class="flex items-center gap-2 mb-0.5">
+                <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+                  </path>
+                </svg>
+                <span class="text-xs font-bold text-slate-700 group-hover:text-slate-900">Search</span>
+              </div>
+              <p class="text-[11px] text-slate-400 truncate pl-6">Find the why</p>
+            </button>
+
+            <!-- Tab 7: Integrations -->
+            <button
+              class="feature-tab flex-1 min-w-[140px] lg:min-w-0 p-3 rounded-xl text-left transition-all duration-200 hover:bg-slate-50 border border-transparent group">
+              <div class="flex items-center gap-2 mb-0.5">
+                <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M11 4a2 2 0 114 0v1a2 2 0 002 2h1a2 2 0 110 4h-1a2 2 0 00-2 2v1a2 2 0 11-4 0v-1a2 2 0 00-2-2H7a2 2 0 110-4h1a2 2 0 002-2V5z">
+                  </path>
+                </svg>
+                <span class="text-xs font-bold text-slate-700 group-hover:text-slate-900">Integrations</span>
+              </div>
+              <p class="text-[11px] text-slate-400 truncate pl-6">Works with your stack</p>
+            </button>
+
+          </div>
+        </div>
+        
+
+      </div>
+    </section>
+  </script>
+    <section class="py-16 lg:py-24 bg-white relative overflow-hidden">
+      <div class="gws-grid items-center">
+
+        <!-- Top Centered Header -->
+        <div
+          style="--gws-column-tablet-start: 2; --gws-column-tablet-end: 11; --gws-column-laptop-start: 2; --gws-column-laptop-end: 11;"
+          class="gws-column text-center mb-12 lg:mb-14">
+
+          <!-- Badge (Centered) -->
+          <div class="flex justify-center mb-4">
+            <div class="inline-flex items-center m-0 rounded-full bg-[#6E44FF]/10 pr-4 shadow-2xs w-fit">
+              <div
+                class="flex items-center justify-center w-8 h-8 rounded-full bg-[#6E44FF]/10 ring-2 ring-white text-xs font-bold text-[#6E44FF] shadow-2xs">
+                01
+              </div>
+              <span class="ml-3 text-xs font-bold text-[#6E44FF] tracking-wider uppercase">DECISION</span>
+            </div>
+          </div>
+
+          <h2
+            class="text-3xl/tight sm:text-4xl/tight lg:text-[40px] font-bold text-slate-900 tracking-tight leading-tight mb-4">
+            Capture every <span class="text-brand-700">decision.</span>
+          </h2>
+          <p class="text-base sm:text-lg pl-6 text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto">
+            Document what was decided, why, and what happens next—all in one place.
+          </p>
+        </div>
+
+        <!-- Accordion & Dashboard Layout -->
+        <div id="decisions-accordion"
+          style="--gws-column-tablet-start: 2; --gws-column-tablet-end: 11; --gws-column-laptop-start: 2; --gws-column-laptop-end: 5;"
+          class="gws-column space-y-6 lg:space-y-8">
+          <div data-accordion-item="" data-img-src="assets/teamflow-decisions-dashboard.png"
+            class="accordion-item relative cursor-pointer group">
+            <div class="accordion-progress-bar" style="transition: none; height: 0%;"></div>
+            <h3
+              class="accordion-title text-xl font-semibold text-slate-500 group-hover:text-slate-900 transition-colors">
+              Structured decision records</h3>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">
+                <p class="text-slate-600 pl-6 text-base leading-relaxed mt-2 font-normal">Use a consistent format that
+                  captures the what, why, impact, and next steps.</p>
+                <div class="mt-6 block lg:hidden overflow-hidden">
+                  <img src="assets/teamflow-decisions-dashboard.png" alt="Structured decision records" class="w-full h-auto">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div data-accordion-item="" data-img-src="assets/teamflow-expanded-decision-view.png"
+            class="accordion-item relative cursor-pointer group">
+            <div class="accordion-progress-bar" style="transition: none; height: 0%;"></div>
+            <h3
+              class="accordion-title text-xl font-semibold text-slate-500 group-hover:text-slate-900 transition-colors">
+              Expanded decision view</h3>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">
+                <p class="text-slate-600 pl-6 text-base leading-relaxed mt-2 font-normal">See the full reasoning, key
+                  context, owner, and priority level behind the decision.</p>
+                <div class="mt-6 block lg:hidden overflow-hidden">
+                  <img src="assets/teamflow-expanded-decision-view.png" alt="Expanded decision view" class="w-full h-auto">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div data-accordion-item="" data-img-src="assets/teamflow-decisions-ownership.png"
+            class="accordion-item relative cursor-pointer group active">
+            <div class="accordion-progress-bar" style="transition: height 8000ms linear; height: 100%;"></div>
+            <h3 class="accordion-title pl-6 text-xl font-semibold text-slate-900 transition-colors">Clear ownership</h3>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">
+                <p class="text-slate-600  pl-6 text-base leading-relaxed mt-2 font-normal">Every decision has an owner,
+                  contributors, and stakeholders all lined up in one place.</p>
+                <div class="mt-6 block lg:hidden overflow-hidden">
+                  <img src="assets/teamflow-decisions-ownership.png" alt="Clear ownership" class="w-full h-auto">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="--gws-column-tablet-start: 2; --gws-column-tablet-end: 11; --gws-column-laptop-start: 6; --gws-column-laptop-end: 11;"
+          class="gws-column hidden lg:flex justify-end w-full">
+          <div class="dashboard-window w-full">
+            <img data-img-index="1" src="assets/teamflow-decisions-dashboard.png" alt="Structured decision records"
+              class="w-full h-auto">
+            <img data-img-index="0" src="assets/teamflow-expanded-decision-view.png" alt="Expanded decision view"
+              class="w-full h-auto">
+            <img data-img-index="2" src="assets/teamflow-decisions-ownership.png" alt="Clear ownership"
+              class="w-full h-auto active">
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <section class="relative w-full bg-[#060813] py-16 lg:py-24 overflow-x-hidden">
+
+      <!-- Bottom Wavy Divider -->
+      <div class="absolute bottom-0 left-0 w-full pointer-events-none line-height-0">
+        <svg class="block w-full border-0 h-[80px]" viewBox="0 0 1440 110" preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill="#ffffff" d="M 0 0 C 2 22 150 100 721 108 C 1290 100 1438 24 1440 0 L 1440 128 L -1 128 Z"></path>
+        </svg>
+      </div>
+
+      <div class="gws-grid items-center">
+
+        <!-- LEFT IMAGE COLUMN: Columns 2 through 7 on Laptop -->
+        <div
+          style="--gws-column-tablet-start: 2; --gws-column-tablet-end: 11; --gws-column-laptop-start: 2; --gws-column-laptop-end: 7;"
+          class="gws-column w-full flex items-center justify-center order-2 lg:order-1 mt-8 lg:mt-0">
+          <img src="assets/evidence-img.png" alt="TeamFlow Network Evidence"
+            class="w-full h-auto max-w-full object-contain block" loading="lazy">
+        </div>
+
+        <!-- RIGHT TEXT COLUMN: Columns 8 through 11 on Laptop -->
+        <div
+          style="--gws-column-tablet-start: 2; --gws-column-tablet-end: 11; --gws-column-laptop-start: 8; --gws-column-laptop-end: 11;"
+          class="gws-column flex flex-col justify-center order-1 lg:order-2 text-center lg:text-left">
+
+          <!-- Section Badge (Centered on Mobile, Left-aligned on Desktop) -->
+          <div class="flex justify-center lg:justify-start mb-4">
+            <div class="inline-flex items-center m-0 rounded-full bg-[#6E44FF]/10 pr-4 shadow-2xs w-fit">
+              <div
+                class="flex items-center justify-center w-8 h-8 rounded-full bg-[#6E44FF]/10 ring-2 ring-[#060813] text-xs font-bold text-[#6E44FF] shadow-2xs">
+                02
+              </div>
+              <span class="ml-3 text-xs font-bold text-[#6E44FF] tracking-wider uppercase">EVIDENCE</span>
+            </div>
+          </div>
+
+          <!-- Headline -->
+          <h2
+            class="text-3xl text-balance sm:text-4xl lg:text-[40px]/tight font-bold text-white tracking-tight leading-[1.222] mb-6">
+            Connect what <span class="text-[#8B5CF6]">informs</span> the decision
+          </h2>
+
+          <!-- Paragraph -->
+          <p class="text-slate-400 text-base sm:text-lg leading-relaxed font-normal">
+            <a href="#"
+              class="text-[#8B5CF6] underline underline-offset-4 hover:text-[#A78BFA] transition-colors font-medium">TeamFlow
+              evidence engine</a> automatically links every decision to the conversations, research, and data that
+            shaped it. By auto-collecting insights from Slack, Docs, Notion, GitHub, and meeting recordings, AI
+            seamlessly organizes context by sentiment and impact so teams never have to hunt for origin stories again.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section
+      class="min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-12 relative w-full py-16 lg:py-24 overflow-x-hidden">
+      <div class="frame w-full max-w-5xl rounded-[28px] p-6 sm:p-8 md:p-10">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] gap-8 sm:gap-10 lg:gap-12 items-center">
+
+          <!-- Left: AI mark + name + copy -->
+          <div class="reveal sr1 w-full max-w-lg lg:max-w-sm mx-auto lg:mx-0 text-center lg:text-left">
+            <div class="flex items-center flex-col lg:flex-row justify-center lg:justify-start gap-3 mb-6">
+              <div class="badge w-12 h-12 rounded-full flex items-center justify-center shrink-0">
+                <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 0.5L9.4 6.1L15 7.5L9.4 8.9L8 14.5L6.6 8.9L1 7.5L6.6 6.1L8 0.5Z" fill="white"></path>
+                </svg>
+              </div>
+              <p class="text-2xl font-bold tracking-tight" style="color: var(--violet-700)">Ledger</p>
+            </div>
+
+            <h2
+              class="text-balance text-[26px] sm:text-[32px] lg:text-[28px] font-semibold text-[var(--ink)] leading-[1.2] tracking-[-0.01em]">
+              Ask anything about how your team
+              <span class="bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] bg-clip-text text-transparent font-bold">
+                got here.
+              </span>
+            </h2>
+
+            <p class="mt-4 text-sm sm:text-base leading-relaxed text-[var(--ink-soft)]">
+              Go beyond the what. Our AI connects decisions, evidence, and conversations to give you the real reason
+              behind every decision.
+            </p>
+          </div>
+
+          <!-- Right: Interactive evidence card -->
+          <div class="w-full max-w-xl mx-auto lg:max-w-none">
+
+            <!-- Search bar -->
+            <div
+              class="query-bar reveal r2 rounded-full px-4 sm:px-5 py-3.5 flex items-center justify-between gap-3 shadow-xs bg-white border border-slate-100">
+              <div class="flex items-center gap-3 min-w-0">
+                <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+                  </path>
+                </svg>
+                <span class="text-xs sm:text-sm md:text-[16px] font-medium text-slate-600 truncate">
+                  Why did we change the onboarding flow?
+                </span>
+              </div>
+
+              <button type="button" aria-label="Search by voice"
+                class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-50 ring-2 ring-slate-100 flex items-center justify-center shrink-0 hover:bg-slate-100 transition-colors">
+                <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="23"></line>
+                  <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Results card -->
+            <div
+              class="result-card reveal r3 rounded-2xl sm:rounded-3xl mt-4 p-4 sm:p-6 bg-white border border-slate-100 shadow-sm">
+              <div class="flex items-center gap-2 mb-5">
+                <svg class="w-4 h-4 text-[#4F36F6] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"></path>
+                </svg>
+                <span class="text-xs sm:text-[13.5px] font-semibold text-[var(--ink)]">Here's what I found</span>
+              </div>
+
+              <div class="space-y-4 sm:space-y-6">
+                <!-- Item 1 -->
+                <div class="row reveal r3 flex items-center gap-3">
+                  <span class="icon-doc w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-violet-50">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5B4FE8" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <path d="M14 2v6h6"></path>
+                    </svg>
+                  </span>
+                  <p class="flex-1 text-xs sm:text-[13.5px] text-[var(--ink)] leading-snug">
+                    5 user interviews mentioning friction
+                  </p>
+                  <span class="text-[11px] sm:text-[12px] text-[var(--ink-soft)] hidden sm:block shrink-0">User
+                    interviews</span>
+                  <svg class="shrink-0 text-emerald-500" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6 9 17l-5-5"></path>
+                  </svg>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="row reveal r4 flex items-center gap-3">
+                  <span class="icon-doc w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-violet-50">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5B4FE8" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 3v18h18"></path>
+                      <path d="M7 15l3-4 3 3 5-6"></path>
+                    </svg>
+                  </span>
+                  <p class="flex-1 text-xs sm:text-[13.5px] text-[var(--ink)] leading-snug">
+                    32% drop-off at template step
+                  </p>
+                  <span
+                    class="text-[11px] sm:text-[12px] text-[var(--ink-soft)] hidden sm:block shrink-0">Analytics</span>
+                  <svg class="shrink-0 text-[var(--ink-soft)] animate-spin [animation-duration:2.2s]" width="15"
+                    height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round">
+                    <path d="M21 12a9 9 0 1 1-9-9"></path>
+                  </svg>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="row reveal r5 flex items-center gap-3">
+                  <span class="icon-doc w-8 h-8 rounded-lg flex items-center justify-center shrink-0 bg-violet-50">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5B4FE8" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M8 12h8M8 16h5M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <path d="M14 2v6h6"></path>
+                    </svg>
+                  </span>
+                  <p class="flex-1 text-xs sm:text-[13.5px] text-[var(--ink)] leading-snug">
+                    Team discussion about simplifying flow
+                  </p>
+                  <span class="text-[11px] sm:text-[12px] text-[var(--ink-soft)] hidden sm:block shrink-0">Product sync
+                    meeting</span>
+                  <svg class="shrink-0 text-[var(--ink-soft)] animate-spin [animation-duration:2.2s]" width="15"
+                    height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round">
+                    <path d="M21 12a9 9 0 1 1-9-9"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <button type="button"
+                class="cta w-full text-white text-xs sm:text-[14px] font-medium rounded-xl py-3 flex items-center justify-center gap-2 mt-6 sm:mt-7 transition-opacity hover:opacity-95">
+                View full evidence
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6"></path>
+                </svg>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-16 lg:py-20 relative overflow-hidden">
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <!-- Subtle Right-side Background Glow that leaks softly to the left -->
+        <div
+          style="--gws-column-tablet-start: 2; --gws-column-tablet-end: 11; --gws-column-laptop-start: 2; --gws-column-laptop-end: 11;"
+          class="gws-column text-center mb-12 lg:mb-14">
+
+          <!-- Badge (Centered) -->
+          <div class="flex justify-center mb-4">
+            <div class="inline-flex items-center m-0 rounded-full bg-[#6E44FF]/10 pr-4 shadow-2xs w-fit">
+              <div
+                class="flex items-center justify-center w-8 h-8 rounded-full bg-[#6E44FF]/10 ring-2 ring-white text-xs font-bold text-[#6E44FF] shadow-2xs">
+                03
+              </div>
+              <span class="ml-3 text-xs font-bold text-[#6E44FF] tracking-wider uppercase">TIMELINE</span>
+            </div>
+          </div>
+          <h2
+            class="text-3xl/tight sm:text-4xl/tight lg:text-[40px] font-bold text-slate-900 tracking-tight leading-tight mb-4 text-balance lg:text-wrap">
+            Follow the story behind
+            <br class="hidden lg:block">
+            <span class="text-brand-700">every decision.</span>
+          </h2>
+
+          <p class="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto">
+
+            From the moment a decision is created to the moment it’s approved, TeamFlow keeps every update, discussion,
+            piece of evidence, and review in context. Nothing gets lost. Nothing gets left unexplained.
+
+          </p>
+        </div>
+        <div class="hidden lg:block absolute top-0 right-0 left-0 mx-auto w-[80%] h-full pointer-events-none z-10">
+          <!-- Top Right Deep Indigo/Purple Glow -->
+          <div
+            class="absolute top-[20%] -right-10 w-[1000px] h-[1000px] rounded-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-indigo-200/40 from-0% via-purple-200/35 via-85% to-transparent to-100% blur-[300px]">
+          </div>
+          <!-- Bottom Right Peach/Pinkish Glow -->
+          <div
+            class="absolute -bottom-60 -right-60 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-orange-200/35 via-rose-100/30 to-transparent blur-[100px]">
+          </div>
+        </div>
+
+
+        <!-- Outer Grid Container -->
+        <div class="">
+
+          <!-- ========================================== -->
+          <!-- LEFT COLUMN: Content & Feature Highlights   -->
+          <!-- ========================================== -->
+
+
+
+          <!-- ========================================== -->
+          <!-- RIGHT COLUMN: Interactive Winding Timeline -->
+          <!-- ========================================== -->
+          <div class="lg:col-span-8 relative w-full">
+
+            <!-- --------------------------------------- -->
+            <!-- DESKTOP SERPENTINE VIEW (Hidden on Mobile) -->
+            <!-- --------------------------------------- -->
+            <!-- Container scales fluidly based on available width; height adjusts automatically -->
+            <!-- AFTER (Fixes height dynamically based on aspect ratio) -->
+            <div class="hidden lg:block relative w-full aspect-[760/860] max-w-[800px] mx-auto">
+              <!-- SVG Connector Overlay -->
+              <div
+                class="absolute top-0 inset-0 m-auto -translate-x-[13.5%] w-[93%] h-[93%] flex items-start justify-center pointer-events-none">
+                <img src="assets/timeline-connector.svg" alt="Timeline Connector"
+                  class="w-full h-full object-contain pointer-events-none">
+              </div>
+
+              <!-- NODE 1: IDEA PROPOSED -->
+              <div
+                class="absolute top-[1%] left-[12%] z-20 w-[67px] h-[67px] rounded-3xl bg-white shadow-lg shadow-purple-500/10 border border-slate-100 flex items-center justify-center text-brand-600">
+                <!-- lightbuld svg image file-->
+                <img src="assets/lightbulb.svg" alt="Lightbulb Icon" class="w-7 h-7">
+              </div>
+              <div
+                class="absolute -top-[0.8%] left-[24%] z-10 w-[280px] timeline-card bg-white rounded-xl px-6 py-5 shadow-xl shadow-slate-200/50 border border-slate-100/90">
+                <span class="text-[11px] font-bold text-brand-600 tracking-wider uppercase block mb-1.5">IDEA
+                  PROPOSED</span>
+                <h4 class="text-slate-900 font-bold text-[16px] mb-3.5">Improve onboarding flow</h4>
+                <div class="flex items-center gap-2">
+                  <img
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=100&amp;q=80"
+                    alt="Sarah Chen" class="w-5 h-5 rounded-full object-cover">
+                  <div class="flex items-center gap-1.5 text-xs">
+                    <span class="font-bold text-slate-700">Sarah Chen</span>
+                  </div>
+                </div>
+                <div class=" flex items-center gap-2 text-xs text-slate-500 mt-1.5"><span>Apr 28,
+                    2025</span><span>•</span><span>9:12 AM</span></div>
+              </div>
+
+              <!-- NODE 2: INITIAL RESEARCH -->
+              <div
+                class="absolute top-[17%] right-[38%] z-20 w-[67px] h-[67px] rounded-3xl bg-white shadow-lg shadow-purple-500/10 border border-slate-100 flex items-center justify-center text-brand-600">
+                <svg class="w-8 h-8 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+                  </path>
+                </svg>
+              </div>
+              <div
+                class="absolute top-[15%] right-[2%] z-10 w-[265px] timeline-card bg-white rounded-xl py-4 px-6 shadow-xl shadow-slate-200/50 border border-slate-100/90">
+                <span class="text-[11px] font-bold text-brand-600 tracking-wider uppercase block mb-1.5">INITIAL
+                  RESEARCH</span>
+                <h4 class="text-slate-900 font-bold text-[16px] mb-5">User pain points identified</h4>
+                <div class="flex items-center font-[600] text-xs gap-6 text-slate-700">
+                  <div class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-blue-500 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z">
+                      </path>
+                    </svg>
+                    <span>Research doc</span>
+                  </div>
+                  <span class="text-[11px] bg-slate-100 px-2 py-[3px] rounded-full font-bold text-slate-600">+
+                    12</span>
+                </div>
+
+
+                <div class="flex items-center gap-2 text-xs text-slate-500 mt-3"><span>Apr 29,
+                    2025</span><span>•</span><span>2:40 PM</span></div>
+              </div>
+
+              <!-- NODE 3: CUSTOMER INTERVIEWS -->
+              <div
+                class="absolute top-[32%] left-[44%] z-20 w-[67px] h-[67px] rounded-3xl bg-white shadow-lg shadow-purple-500/10 border border-slate-100 flex items-center justify-center text-emerald-500">
+                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                  </path>
+                </svg>
+              </div>
+              <div
+                class="absolute top-[30%] left-[8.5%] z-10 w-[265px] timeline-card bg-white rounded-xl py-5 px-6 shadow-xl shadow-slate-200/50 border border-slate-100/90">
+                <span class="text-[11px] font-bold text-brand-600 tracking-wider uppercase block mb-1.5">CUSTOMER
+                  INTERVIEWS</span>
+                <h4 class="text-slate-900 font-bold text-[16px] mb-5">5 user interviews completed</h4>
+                <div class="flex items-center gap-6 font-[600] text-xs text-slate-700">
+                  <div class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-[#27a25d] fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z">
+                      </path>
+                    </svg>
+                    <span>Interview notes</span>
+                  </div>
+                  <span class="text-[11px] bg-slate-100 px-2 py-[2px] rounded-full font-bold">+ 5</span>
+                </div>
+
+
+                <div class="flex items-center gap-2 text-xs text-slate-500 mt-3"><span>May 1,
+                    2025</span><span>•</span><span>11:30 PM</span></div>
+              </div>
+
+              <!-- NODE 4: DESIGN EXPLORATION -->
+              <div
+                class="absolute top-[46%] right-[37%] z-20 w-[67px] h-[67px] rounded-3xl bg-white shadow-lg shadow-purple-500/10 border border-slate-100 flex items-center justify-center text-brand-600">
+                <svg class="w-7 h-7 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
+                  </path>
+                </svg>
+              </div>
+              <div
+                class="absolute top-[44%] right-[7.5%] z-10 w-[220px] timeline-card bg-white rounded-xl py-4 px-6 shadow-xl shadow-slate-200/50 border border-slate-100/90">
+                <span class="text-[11px] font-bold text-brand-600 tracking-wider uppercase block mb-1.5">DESIGN
+                  EXPLORATION</span>
+                <h4 class="text-slate-900 font-bold text-[16px] mb-5">Onboarding flow v3</h4>
+                <div class="flex items-center gap-6 text-xs font-[600] text-slate-700">
+                  <div class="flex items-center gap-3">
+                    <svg class="w-4 h-4" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38H19V28.5Z"
+                        fill="#0ACF83"></path>
+                      <path
+                        d="M0 47.5C0 42.2533 4.2533 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.2533 57 0 52.7467 0 47.5Z"
+                        fill="#1ABCFE"></path>
+                      <path d="M0 9.5C0 4.2533 4.2533 0 9.5 0H19V19H9.5C4.2533 19 0 14.7467 0 9.5Z" fill="#F24E1E">
+                      </path>
+                      <path d="M19 0H28.5C33.7467 0 38 4.2533 38 9.5C38 14.7467 33.7467 19 28.5 19H19V0Z"
+                        fill="#FF7262"></path>
+                      <path d="M0 28.5C0 23.2533 4.2533 19 9.5 19H19V38H9.5C4.2533 38 0 33.7467 0 28.5Z" fill="#A259FF">
+                      </path>
+                    </svg>
+                    <span>Figma file</span>
+                  </div>
+                  <span class="text-[11px] bg-slate-100 px-2 py-[3px] rounded-full font-bold text-slate-600">v3</span>
+                </div>
+
+
+                <div class="flex items-center gap-2 text-xs text-slate-500 mt-3"><span>May 3,
+                    2025</span><span>•</span><span>4:15 PM</span></div>
+              </div>
+
+              <!-- NODE 5: ENGINEERING REVIEW -->
+              <div
+                class="absolute top-[62%] left-[42%] z-20 w-[67px] h-[67px] rounded-3xl bg-white shadow-lg shadow-purple-500/10 border border-slate-100 flex items-center justify-center text-blue-600 font-bold">
+                <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4">
+                  </path>
+                </svg>
+              </div>
+              <div
+                class="absolute top-[59%] left-[10%] z-10 w-[235px] timeline-card bg-white rounded-xl py-4 px-6 shadow-xl shadow-slate-200/50 border border-slate-100/90">
+                <span class="text-[11px] font-bold text-brand-600 tracking-wider uppercase block mb-1.5">ENGINEERING
+                  REVIEW</span>
+                <h4 class="text-slate-900 font-bold text-[16px] mb-5">Reviewed by eng team</h4>
+                <div class="flex items-center justify-between font-[600] text-xs text-slate-700">
+                  <div class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-slate-800" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z">
+                      </path>
+                    </svg>
+                    <span>PR #428</span>
+                  </div>
+                  <span
+                    class="text-[11px] font-semibold text-purple-700 bg-purple-100/70 px-2 py-0.5 rounded-full">Merged</span>
+                </div>
+
+
+                <div class="flex items-center gap-2 text-xs text-slate-500 mt-3"><span>May 6,
+                    2025</span><span>•</span><span>10:20 AM</span></div>
+              </div>
+
+              <!-- NODE 6: DECISION MADE -->
+              <div
+                class="absolute top-[75%] left-[53.3%] z-20 w-[67px] h-[67px] rounded-3xl bg-white shadow-lg shadow-emerald-500/20 flex items-center justify-center text-[#27a25d]">
+                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div
+                class="absolute top-[72%] right-[3%] z-10 w-[255px] timeline-card bg-[#F0FDF4]/90 border border-emerald-100/80 rounded-2xl py-5 px-6 shadow-xl shadow-emerald-900/5">
+                <span class="text-[11px] font-bold text-emerald-600 tracking-wider uppercase block mb-1.5">DECISION
+                  MADE</span>
+                <h4 class="text-slate-900 font-bold text-[16px] mb-5">Approved &amp; ready to build</h4>
+                <div class="flex items-center gap-4">
+                  <div class="flex -space-x-0 overflow-hidden">
+                    <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
+                      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=80&amp;q=80"
+                      alt="">
+                    <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;w=80&amp;q=80"
+                      alt="">
+                    <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
+                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=80&amp;q=80"
+                      alt="">
+                    <img class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover"
+                      src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=80&amp;q=80"
+                      alt="">
+                  </div>
+                  <span
+                    class="text-[11px] bg-[#F0FDF4]/100 px-2 py-[3px] rounded-full font-bold text-slate-600">+3</span>
+                </div>
+
+
+                <div class="flex items-center gap-2 text-xs text-slate-500 mt-3"><span>May 7,
+                    2025</span><span>•</span><span>3:50 PM</span></div>
+              </div>
+
+              <!-- NODE 7: IMPACT MEASURED -->
+              <div
+                class="absolute bottom-[3%] left-[45%] z-20 w-[67px] h-[67px] rounded-3xl bg-white shadow-lg shadow-purple-500/10 border border-slate-100 flex items-center justify-center">
+                <img src="assets/google-analytics.svg" alt="Chart Icon" class="w-7 h-7">
+              </div>
+              <div
+                class="absolute -bottom-[5%] left-[10%] z-10 w-[260px] timeline-card bg-white rounded-xl py-5 px-6 shadow-xl shadow-slate-200/50 border border-slate-100/90">
+                <span class="text-[11px] font-bold text-brand-600 tracking-wider uppercase block mb-1.5">IMPACT
+                  MEASURED</span>
+                <h4 class="text-slate-900 font-bold text-[16px] mb-5">Activation rate increased</h4>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-2xl font-bold text-[#27a25d] tracking-tight">+18%</span>
+                  <svg class="w-24 h-8 text-brand-600 stroke-current" viewBox="0 0 100 30" stroke-width="2" fill="none">
+                    <path d="M 0 26 Q 15 22, 25 21 T 40 10 T 55 18 T 75 16 T 100 3 L 100 30 L 0 30 Z"
+                      class="fill-brand-100" stroke="none"></path>
+                    <path d="M 0 26 Q 15 22, 25 21 T 40 10 T 55 18 T 75 16 T 100 3" stroke-linecap="round"></path>
+                  </svg>
+
+                </div>
+
+
+                <div class="flex items-center gap-2 text-xs text-slate-500 mt-3"><span>May 24,
+                    2025</span><span>•</span><span>30 days after launch</span></div>
+              </div>
+
+            </div>
+
+
+            <!-- --------------------------------------- -->
+            <!-- MOBILE VERTICAL RAIL VIEW (Shown on Mobile) -->
+            <!-- --------------------------------------- -->
+            <div class="block lg:hidden relative pl-6 space-y-6">
+
+              <!-- Vertical Connecting Rail Line -->
+              <div
+                class="absolute left-6 top-10 bottom-[15%] w-0.5 bg-gradient-to-b from-brand-200 via-brand-500 to-emerald-400 -translate-x-1/2">
+              </div>
+
+              <!-- Mobile Item 1 -->
+              <div class="relative pl-8">
+
+
+                <div
+                  class="absolute left-0 top-0 -translate-x-1/2 z-20 w-12 h-12 rounded-2xl bg-white shadow-md border border-slate-100 flex items-center justify-center text-brand-600">
+                  <!-- lightbuld svg image file-->
+                  <img src="assets/lightbulb.svg" alt="Lightbulb Icon" class="w-5 h-5">
+                </div>
+
+
+                <div class="z-10 bg-white rounded-xl p-5 shadow-lg shadow-slate-200/50 border border-slate-100">
+                  <span class="text-[10px] font-extrabold text-brand-600 tracking-wider uppercase block mb-1">IDEA
+                    PROPOSED</span>
+                  <h4 class="text-slate-900 font-bold text-sm mb-3">Improve onboarding flow</h4>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=100&amp;q=80"
+                      alt="Sarah Chen" class="w-5 h-5 rounded-full object-cover">
+                    <div class="flex items-center gap-1.5 text-xs">
+                      <span class="font-bold text-slate-700">Sarah Chen</span>
+                    </div>
+                  </div>
+                  <div class=" flex items-center gap-2 text-xs text-slate-500 mt-1.5"><span>Apr 28,
+                      2025</span><span>•</span><span>9:12 AM</span></div>
+                </div>
+              </div>
+
+              <!-- Mobile Item 2 -->
+              <div class="relative pl-8">
+                <div
+                  class="absolute left-0 top-1 -translate-x-1/2 w-12 h-12 rounded-2xl bg-white border border-brand-200 shadow-md flex items-center justify-center text-brand-600">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
+                <div class="z-10 bg-white rounded-xl p-5 shadow-lg shadow-slate-200/50 border border-slate-100">
+                  <span class="text-[10px] font-extrabold text-brand-600 tracking-wider uppercase block mb-1">INITIAL
+                    RESEARCH</span>
+                  <h4 class="text-slate-900 font-bold text-sm mb-3">User pain points identified</h4>
+                  <div class="flex items-center font-[600] text-xs gap-6 text-slate-700">
+                    <div class="flex items-center gap-3">
+                      <svg class="w-5 h-5 text-blue-500 fill-current" viewBox="0 0 24 24">
+                        <path
+                          d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z">
+                        </path>
+                      </svg>
+                      <span>Research doc</span>
+                    </div>
+                    <span class="text-[11px] bg-slate-100 px-2 py-[3px] rounded-full font-bold text-slate-600">+
+                      12</span>
+                  </div>
+                  <div class=" flex items-center gap-2 text-xs text-slate-500 mt-1.5"><span>Apr 29,
+                      2025</span><span>•</span><span>2:40 PM</span></div>
+                </div>
+
+              </div>
+
+              <!-- Mobile Item 3 -->
+              <div class="relative pl-8">
+                <div
+                  class="absolute left-0 top-1 -translate-x-1/2 w-12 h-12 rounded-2xl bg-white border border-brand-200 shadow-md flex items-center justify-center text-emerald-500">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                    </path>
+                  </svg>
+                </div>
+                <div class="z-10 bg-white rounded-xl p-5 shadow-lg shadow-slate-200/50 border border-slate-100">
+                  <span class="text-[10px] font-extrabold text-brand-600 tracking-wider uppercase block mb-1">CUSTOMER
+                    INTERVIEWS</span>
+                  <h4 class="text-slate-900 font-bold text-sm mb-3">5 user interviews completed</h4>
+                  <div class="flex items-center gap-6 font- text-xs text-slate-700">
+                    <div class="flex items-center gap-3">
+                      <svg class="w-5 h-5 text-[#27a25d] fill-current" viewBox="0 0 24 24">
+                        <path
+                          d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z">
+                        </path>
+                      </svg>
+                      <span>Interview notes</span>
+                    </div>
+                    <span class="text-[11px] bg-slate-100 px-2 py-[2px] rounded-full font-bold">+ 5</span>
+                  </div>
+                  <div class=" flex items-center gap-2 text-xs text-slate-500 mt-1.5"><span>May 1,
+                      2025</span><span>•</span><span>11:30 PM</span></div>
+                </div>
+
+              </div>
+
+              <!-- Mobile Item 4 -->
+              <div class="relative pl-8">
+                <div
+                  class="absolute left-0 top-1 -translate-x-1/2 w-12 h-12 rounded-xl bg-white border border-brand-200 shadow-md flex items-center justify-center text-brand-600">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
+                    </path>
+                  </svg>
+                </div>
+                <div class="z-10 bg-white rounded-xl p-5 shadow-lg shadow-slate-200/50 border border-slate-100">
+                  <span class="text-[10px] font-extrabold text-brand-600 tracking-wider uppercase block mb-1">DESIGN
+                    EXPLORATION</span>
+                  <h4 class="text-slate-900 font-bold text-sm mb-3">Onboarding flow v3</h4>
+                  <div class="flex items-center gap-6 text-xs font- text-slate-700">
+                    <div class="flex items-center gap-3">
+                      <svg class="w-4 h-4" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38H19V28.5Z"
+                          fill="#0ACF83"></path>
+                        <path
+                          d="M0 47.5C0 42.2533 4.2533 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.2533 57 0 52.7467 0 47.5Z"
+                          fill="#1ABCFE"></path>
+                        <path d="M0 9.5C0 4.2533 4.2533 0 9.5 0H19V19H9.5C4.2533 19 0 14.7467 0 9.5Z" fill="#F24E1E">
+                        </path>
+                        <path d="M19 0H28.5C33.7467 0 38 4.2533 38 9.5C38 14.7467 33.7467 19 28.5 19H19V0Z"
+                          fill="#FF7262"></path>
+                        <path d="M0 28.5C0 23.2533 4.2533 19 9.5 19H19V38H9.5C4.2533 38 0 33.7467 0 28.5Z"
+                          fill="#A259FF">
+                        </path>
+                      </svg>
+                      <span>Figma file</span>
+                    </div>
+                    <span class="text-[11px] bg-slate-100 px-2 py-[3px] rounded-full font-bold text-slate-600">v3</span>
+                  </div>
+                  <div class=" flex items-center gap-2 text-xs text-slate-500 mt-1.5"><span>May 3,
+                      2025</span><span>•</span><span>4:15 PM</span></div>
+                </div>
+
+              </div>
+
+              <!-- Mobile Item 5 -->
+              <div class="relative pl-8">
+                <div
+                  class="absolute left-0 top-1 -translate-x-1/2 w-12 h-12 rounded-xl bg-white border border-brand-200 shadow-md flex items-center justify-center text-blue-600">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4">
+                    </path>
+                  </svg>
+                </div>
+                <div class="z-10 bg-white rounded-xl p-5 shadow-lg shadow-slate-200/50 border border-slate-100">
+                  <span
+                    class="text-[10px] font-extrabold text-brand-600 tracking-wider uppercase block mb-1">ENGINEERING
+                    REVIEW</span>
+                  <h4 class="text-slate-900 font-bold text-sm mb-3">Reviewed by eng team</h4>
+                  <div class="flex items-center justify-between font- text-xs text-slate-700">
+                    <div class="flex items-center gap-3">
+                      <svg class="w-5 h-5 text-slate-800" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z">
+                        </path>
+                      </svg>
+                      <span>PR #428</span>
+                    </div>
+                    <span
+                      class="text-[11px] font-semibold text-purple-700 bg-purple-100/70 px-2 py-0.5 rounded-full">Merged</span>
+                  </div>
+                  <div class=" flex items-center gap-2 text-xs text-slate-500 mt-1.5"><span>May 6,
+                      2025</span><span>•</span><span>10:20 AM</span></div>
+                </div>
+
+              </div>
+
+              <!-- Mobile Item 6 (Decision Made) -->
+              <div class="relative pl-8">
+
+
+                <div
+                  class="absolute left-0 top-1  -translate-x-1/2 w-12 h-12 rounded-2xl bg-white shadow-md shadow-emerald-500/20 flex items-center justify-center text-[#27a25d]">
+                  <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <div
+                  class="z-10 bg-[#F0FDF4]/90 border border-emerald-100/80 rounded-xl p-5 shadow-lg shadow-slate-200/50">
+                  <span class="text-[10px] font-extrabold text-emerald-600 tracking-wider uppercase block mb-1">DECISION
+                    MADE</span>
+                  <h4 class="text-slate-900 font-bold text-sm mb-3">Approved &amp; ready to build</h4>
+                  <div class="flex items-center gap-4">
+                    <div class="flex -space-x-1.5 overflow-hidden">
+                      <img class="inline-block h-5 w-5 rounded-full ring-2 ring-white object-cover"
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=80&amp;q=80"
+                        alt="Sarah Chen">
+                      <img class="inline-block h-5 w-5 rounded-full ring-2 ring-white object-cover"
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;w=80&amp;q=80"
+                        alt="Team Member 2">
+                      <img class="inline-block h-5 w-5 rounded-full ring-2 ring-white object-cover"
+                        src="	https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=80&amp;q=80"
+                        alt="Team Member 3">
+                      <img class="inline-block h-5 w-5 rounded-full ring-2 ring-white object-cover"
+                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;w=80&amp;q=80"
+                        alt="Team Member 4">
+                    </div>
+                    <span class="text-[11px] bg-slate-100 px-2 py-[3px] rounded-full font-bold text-slate-600">+3</span>
+                  </div>
+                  <div class=" flex items-center gap-2 text-xs text-slate-500 mt-1.5"><span>May 7,
+                      2025</span><span>•</span><span>3:50 PM</span></div>
+                </div>
+
+
+              </div>
+
+              <!-- Mobile Item 7 -->
+              <div class="relative pl-8">
+                <div
+                  class="absolute left-0 top-1 -translate-x-1/2 w-12 h-12 rounded-2xl bg-white shadow-md border border-brand-200 flex items-center justify-center">
+                  <img src="assets/google-analytics.svg" alt="Chart Icon" class="w-5 h-5">
+                </div>
+                <div class="z-10 bg-white rounded-xl p-5 shadow-lg shadow-slate-200/50 border border-slate-100">
+                  <span class="text-[10px] font-extrabold text-brand-600 tracking-wider uppercase block mb-1">IMPACT
+                    MEASURED</span>
+                  <h4 class="text-slate-900 font-bold text-sm mb-3">Activation rate increased</h4>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xl font-bold text-[#27a25d] tracking-tight">+18%</span>
+                    <svg class="w-24 h-8 text-brand-600 stroke-current" viewBox="0 0 100 30" stroke-width="2"
+                      fill="none">
+                      <path d="M 0 26 Q 15 22, 25 21 T 40 10 T 55 18 T 75 16 T 100 3 L 100 30 L 0 30 Z"
+                        class="fill-brand-100" stroke="none"></path>
+                      <path d="M 0 26 Q 15 22, 25 21 T 40 10 T 55 18 T 75 16 T 100 3" stroke-linecap="round"></path>
+                    </svg>
+                  </div>
+                  <div class=" flex items-center gap-2 text-xs text-slate-500 mt-1.5"><span>May 24,
+                      2025</span><span>•</span><span>30 days after launch</span></div>
+                </div>
+
+              </div>
+
+              <!-- Mobile Bottom Link -->
+              <div class="pt-4 text-center">
+                <a href="#"
+                  class="inline-flex items-center gap-1.5 text-brand-600 font-bold text-xs bg-white border border-brand-100 px-4 py-2.5 rounded-full shadow-sm hover:bg-brand-50 transition-colors">
+                  <span>See full decision timeline</span>
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+    <section class="pt-12">
+      <!-- Continuous Deep Navy Photography Sweep Container with Rounded Top Corners -->
+      <div
+        class="max-w-12xl mx-auto bg-[#05070F] text-white rounded-t-[32px] md:rounded-t-[48px] overflow-hidden relative">
+
+        <!-- Shiny blue/purple gradient flares matching the glow in image_d057be.jpg -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-t-[32px] md:rounded-t-[48px]">
+          <!-- Main radial purple flare directly behind the title and logo -->
+          <div
+            class="absolute -top-1/4 -left-1/4 w-[120%] h-[150%] bg-[radial-gradient(circle_at_20%_20%,_rgba(79,70,229,0.38)_0%,_rgba(147,51,234,0.18)_50%,_rgba(5,7,15,0)_100%)] blur-[90px]">
+          </div>
+          <!-- Secondary ambient bottom-right sweep to lift the footer design -->
+          <div class="absolute -bottom-48 -right-48 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[130px]">
+          </div>
+        </div>
+
+        <!-- CTA Section Container -->
+        <div class="relative z-10 px-6 py-16 md:py-20 lg:px-16">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-16">
+
+            <!-- Left Side: Content Block (Left-aligned across both views) -->
+            <div class="flex flex-col items-start text-left max-w-2xl">
+              <!-- Brand Icon (Styled exactly to match the violet ring in image_d057be.jpg) -->
+              <div class="w-12 h-12 mb-6 flex-shrink-0">
+                <img src="assets/teamflow-logo.png" alt="TeamFlow Logo" class="w-full h-full object-contain">
+              </div>
+
+              <!-- Heading (Stark White, Tight, Heavy Weight as in image_d057be.jpg) -->
+              <h2
+                class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[42px] lg:leading-[1.3] leading-[1.15] text-white tracking-tight">
+                Preserve the context behind every decision.
+              </h2>
+
+              <!-- Supporting Text (Directly matches the copy of the image reference) -->
+              <p class="mt-6 text-lg text-slate-300 md:leading-[2]">
+                Your work already has a history. Make sure your team can understand it.
+              </p>
+            </div>
+
+            <!-- Right Side: Interactive Action Buttons styled after image_d057be.jpg -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full lg:w-auto flex-shrink-0">
+              <!-- Start Free Button with Arrow (Vibrant Rich Violet Gradient Fill) -->
+              <a href="#"
+                class="inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 active:scale-[0.98] rounded-xl shadow-xl shadow-indigo-600/25 transition-all transform hover:-translate-y-0.5">
+                <span>Start free</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+              <!-- Book a Demo Outline Button (Transparent, Crisp White Border) -->
+              <a href="#"
+                class="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-white hover:text-white bg-transparent hover:bg-white/5 border border-white/20 rounded-xl transition-all">
+                Book a demo
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Thin Circular Checkmarks (Vertically stacked on Mobile, horizontal on Desktop) -->
+          <div
+            class="mt-10 flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-y-3.5 gap-x-8 text-xs sm:text-[13px] text-slate-300 font-medium">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-5 h-5 text-indigo-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+              </svg>
+              <span>Free 14-day trial</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <svg class="w-5 h-5 text-indigo-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+              </svg>
+              <span>No credit card required</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <svg class="w-5 h-5 text-indigo-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+              </svg>
+              <span>Cancel anytime</span>
+            </div>
+          </div>
+
+          <!-- Horizontal Divider Line -->
+          <hr class="border-slate-500 my-12 opacity-60">
+
+          <!-- Footer Block -->
+          <footer>
+            <!-- 1. DESKTOP ONLY: Extended Grid Columns Layout -->
+            <div class="hidden lg:grid grid-cols-12 gap-8 pb-12">
+              <!-- Column 1 (Brand Info with accurate matching logo icon) -->
+              <div class="col-span-4 flex flex-col items-start gap-4">
+                <a href="#" class="flex items-center gap-3 group">
+                  <div class="w-8 h-8 flex-shrink-0">
+                    <img src="assets/teamflow-logo.png" alt="TeamFlow Logo" class="w-full h-full object-contain">
+                  </div>
+                  <span class="font-heading font-extrabold text-xl tracking-tight text-white">TeamFlow</span>
+                </a>
+                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+                  The workspace where decisions never lose their context. We help team structures grow
+                  with clean knowledge longevity.
+                </p>
+              </div>
+
+              <!-- Right side link categories -->
+              <div class="col-span-8 grid grid-cols-4 gap-8">
+                <div>
+                  <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-slate-300 mb-4">
+                    Product</h4>
+                  <ul class="space-y-2.5">
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Features</a>
+                    </li>
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Integrations</a>
+                    </li>
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Changelog</a>
+                    </li>
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Security</a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-slate-300 mb-4">
+                    Solutions</h4>
+                  <ul class="space-y-2.5">
+                    <li><a href="#" class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Product
+                        Teams</a></li>
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Engineering
+                        Teams</a></li>
+                    <li><a href="#" class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Design
+                        Teams</a></li>
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Startups</a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-slate-300 mb-4">
+                    Resources</h4>
+                  <ul class="space-y-2.5">
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Blog</a>
+                    </li>
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Guides</a>
+                    </li>
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Templates</a>
+                    </li>
+                    <li><a href="#" class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Help
+                        Center</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-slate-300 mb-4">
+                    Company</h4>
+                  <ul class="space-y-2.5">
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">About</a>
+                    </li>
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Careers</a>
+                    </li>
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Privacy</a>
+                    </li>
+                    <li><a href="#"
+                        class="text-xs sm:text-sm text-slate-400 hover:text-white transition-colors">Terms</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. MOBILE ONLY: High-Fidelity Simplified Nav Strip Layout (Exactly as shown in Mobile Mockup) -->
+            <div class="flex lg:hidden flex-col items-start gap-6 pb-6">
+              <!-- Brand Identity matching image_d057be.jpg -->
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 flex-shrink-0">
+                  <img src="assets/teamflow-logo.png" alt="TeamFlow Logo" class="w-full h-full object-contain">
+                </div>
+                <span class="font-heading font-extrabold text-lg tracking-tight text-white">TeamFlow</span>
+              </div>
+
+              <!-- Short description -->
+              <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                The workspace where decisions never lose their context.
+              </p>
+
+              <!-- Horizontal simplified Page Links Row -->
+              <nav class="flex flex-wrap items-center gap-x-6 gap-y-2.5 text-xs font-semibold text-slate-300">
+                <a href="#" class="hover:text-white transition-colors">Product</a>
+                <a href="#" class="hover:text-white transition-colors">Pricing</a>
+                <a href="#" class="hover:text-white transition-colors">Resources</a>
+                <a href="#" class="hover:text-white transition-colors">Company</a>
+              </nav>
+            </div>
+
+            <!-- Bottom Copyright and Social Block -->
+            <div class="pt-8 border-t border-slate-900/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <span class="text-xs text-slate-500">
+                &copy; 2026 TeamFlow, Inc. All rights reserved.
+              </span>
+
+              <!-- Premium Vector Brand Socials -->
+              <div class="flex items-center gap-5">
+                <!-- Twitter / X -->
+                <a href="#" class="text-slate-500 hover:text-white transition-colors"
+                  aria-label="Follow us on Twitter/X">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </a>
+                <!-- LinkedIn -->
+                <a href="#" class="text-slate-500 hover:text-white transition-colors"
+                  aria-label="Follow us on LinkedIn">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z" />
+                  </svg>
+                </a>
+                <!-- GitHub -->
+                <a href="#" class="text-slate-500 hover:text-white transition-colors"
+                  aria-label="Follow our GitHub organization">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </footer>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- DEMO VIDEO MODAL (Interactive Enhancement) -->
+  <div id="demo-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md transition-opacity">
+    <div class="bg-slate-900 rounded-2xl max-w-3xl w-full border border-slate-800 shadow-2xl overflow-hidden relative">
+      <div class="flex items-center justify-between p-4 border-b border-slate-800">
+        <h3 class="text-white font-bold text-base flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+          TeamFlow Interactive Walkthrough
+        </h3>
+        <button id="close-demo-btn" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="aspect-video bg-black flex items-center justify-center relative">
+        <div class="text-center p-8">
+          <div
+            class="w-16 h-16 rounded-full bg-brand-600/20 text-brand-500 flex items-center justify-center mx-auto mb-4 border border-brand-500/30">
+            <svg class="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"></path>
+            </svg>
+          </div>
+          <h4 class="text-white font-bold text-lg mb-1">Interactive Product Demo</h4>
+          <p class="text-slate-400 text-xs max-w-sm mx-auto">This modal represents the video demo overlay triggering
+            from the primary hero button.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const accordionContainer = document.getElementById('decisions-accordion');
+      if (!accordionContainer) return;
+
+      const accordionItems = Array.from(accordionContainer.querySelectorAll('[data-accordion-item]'));
+      const dashboardImages = document.querySelectorAll('.dashboard-window img');
+
+      const DURATION = 8000; // Progress line fill time in ms
+      let currentIndex = 0;
+      let timerId = null;
+
+      function activateItem(index) {
+        currentIndex = index;
+
+        // 1. Update Accordion Items & Progress Line
+        accordionItems.forEach((item, i) => {
+          const progressBar = item.querySelector('.accordion-progress-bar');
+          const title = item.querySelector('.accordion-title');
+
+          if (i === index) {
+            item.classList.add('active');
+            if (title) {
+              title.className = 'accordion-title min-h-[48px] flex justify-center flex-col sm:min-h-0 text-xl pl-6 font-semibold text-slate-900 transition-colors';
+            }
+
+            if (progressBar) {
+              progressBar.style.transition = 'none';
+              progressBar.style.height = '0%';
+              void progressBar.offsetHeight; // Force reflow
+              progressBar.style.transition = `height ${DURATION}ms linear`;
+              progressBar.style.height = '100%';
+            }
+          } else {
+            item.classList.remove('active');
+            if (title) {
+              title.className = 'accordion-title min-h-[48px] flex justify-center flex-col sm:min-h-0  pl-6 text-xl font-semibold text-slate-500 group-hover:text-slate-900 transition-colors';
+            }
+
+            if (progressBar) {
+              progressBar.style.transition = 'none';
+              progressBar.style.height = '0%';
+            }
+          }
+        });
+
+        // 2. Smoothly cross-fade images without DOM reload or layout shifts
+        dashboardImages.forEach((img, i) => {
+          if (i === index) {
+            img.classList.add('active');
+          } else {
+            img.classList.remove('active');
+          }
+        });
+
+        // 3. Reset auto-advance timer
+        clearTimeout(timerId);
+        timerId = setTimeout(() => {
+          const nextIndex = (currentIndex + 1) % accordionItems.length;
+          activateItem(nextIndex);
+        }, DURATION);
+      }
+
+      // Handle manual item clicks
+      accordionItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          activateItem(index);
+        });
+      });
+
+      // Start rotation
+      activateItem(0);
+    });
+
+    // Interactive navigation and responsive menu logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.getElementById('main-header');
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileNavigation = document.getElementById('mobile-navigation');
+
+      // Hamburger icon animation selectors
+      const burgerTop = document.getElementById('hamburger-top');
+      const burgerMid = document.getElementById('hamburger-mid');
+      const burgerBot = document.getElementById('hamburger-bot');
+
+      let isMenuOpen = false;
+
+      // Toggle Mobile Menu Open / Close
+      mobileMenuToggle.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        mobileMenuToggle.setAttribute('aria-expanded', isMenuOpen);
+
+        if (isMenuOpen) {
+          mobileNavigation.classList.add('mobile-menu-active');
+
+          // Transform hamburger to X smoothly
+          burgerTop.style.transform = 'rotate(45deg)';
+          burgerTop.style.top = '11px';
+          burgerMid.style.opacity = '0';
+          burgerBot.style.transform = 'rotate(-45deg)';
+          burgerBot.style.top = '11px';
+          header.classList.add('bg-white');
+        } else {
+          mobileNavigation.classList.remove('mobile-menu-active');
+
+          // Reset hamburger bars
+          burgerTop.style.transform = 'none';
+          burgerTop.style.top = '3px';
+          burgerMid.style.opacity = '1';
+          burgerBot.style.transform = 'none';
+          burgerBot.style.top = '19px';
+
+          if (window.scrollY <= 20) {
+            header.classList.remove('bg-white');
+          }
+        }
+      });
+
+      // Smooth backdrop styling on scroll activation
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          header.classList.add('bg-white/80', 'backdrop-blur-md', 'shadow-nav-shadow');
+          header.classList.remove('bg-transparent');
+        } else {
+          if (!isMenuOpen) {
+            header.classList.remove('bg-white/80', 'backdrop-blur-md', 'shadow-nav-shadow');
+            header.classList.add('bg-transparent');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
